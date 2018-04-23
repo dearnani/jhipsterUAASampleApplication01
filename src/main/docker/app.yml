@@ -1,0 +1,17 @@
+version: '2'
+services:
+    jhipsteruaasampleapplication01-app:
+        image: jhipsteruaasampleapplication01
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://jhipsteruaasampleapplication01-mysql:3306/jhipsteruaasampleapplication01?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=jhipsteruaasampleapplication01-elasticsearch:9300
+    jhipsteruaasampleapplication01-mysql:
+        extends:
+            file: mysql.yml
+            service: jhipsteruaasampleapplication01-mysql
+    jhipsteruaasampleapplication01-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: jhipsteruaasampleapplication01-elasticsearch
